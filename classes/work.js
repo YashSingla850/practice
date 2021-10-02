@@ -258,9 +258,9 @@
 //   if (err) {
 //     console.log(err);
 //   } else {
-let teams = JSON.parse(data);
-console.log(teams);
-console.log(teams[1].matches[0].result);
+// let teams = JSON.parse(data);
+// console.log(teams);
+// console.log(teams[1].matches[0].result);
 //   }
 // });
 
