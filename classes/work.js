@@ -21,7 +21,7 @@
 
 /////////////////////////////////////////////////////
 //  LACK OF CALLBACK
-// ti read a file(disk)
+// t1 read a file(disk)
 // t2 calculate  prime number(cpu)
 // t2 will be done after t1
 // node lecture5.js --source=big.data --n=7000
@@ -288,11 +288,11 @@
 //     // console.log(teams);
 //     let wb = new xl.Workbook();
 
-//     let style = wb.createStyle({
-//       font: {
-//         color: "red",
-//       },
-//     });
+// let style = wb.createStyle({
+//   font: {
+//     color: "red",
+//   },
+// });
 
 //     for (let i = 0; i < teams.length; i++) {
 //       let ws = wb.addWorksheet(teams[i].name);
@@ -311,7 +311,50 @@
 // });
 
 ////////////////////////////////////////////////
-//  LECTURE-9
+//  LECTURE-10
 ////////////////////////////////////////////////
 
 //
+// // node work.js --source="teams.json" --dest="root"
+
+// let minimist = require("minimist");
+// let fs = require("fs");
+// const path = require("path");
+// // let path = require("path"); //path ka use hu is liye karte hai taki hume / apne aap se na lagana pade
+// let args = minimist(process.argv);
+
+// let teamsjson = fs.readFileSync(args.source, "utf-8");
+// let teams = JSON.parse(teamsjson);
+// for (let i = 0; i < teams.length; i++) {
+//   //   fs.mkdirSync(args.dest + "/" + teams[i].name);
+//   let folderName = path.join(args.dest, teams[i].name);
+//   fs.mkdirSync(folderName);
+// }
+
+//////////////////////////////////////////////////////
+
+// npm install pdf-lib
+// node work.js --source="teams.json" --dest="root"
+
+// work == isme hum  teams ka folder bna kar usme  matches kar pdf banayege
+
+//
+
+let minimist = require("minimist");
+let fs = require("fs");
+const path = require("path");
+const { match } = require("assert");
+// let path = require("path"); //path ka use hu is liye karte hai taki hume / apne aap se na lagana pade
+let args = minimist(process.argv);
+
+let teamsjson = fs.readFileSync(args.source, "utf-8");
+let teams = JSON.parse(teamsjson);
+for (let i = 0; i < teams.length; i++) {
+  let folderName = path.join(args.dest, teams[i].name);
+  fs.mkdirSync(folderName);
+  for (let j = 0; j < teams[i].matches.length; j++) {
+    let matchFileName = path.join(folderName, teams[i].matches[j].vs + ".pdf");
+    // console.log(matchFileName);
+  }
+}
+// creating pdf
